@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        if (Input.GetButtonDown("Jump"))
         {
             Jump();
         }
@@ -43,19 +43,28 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(rigidBody.velocity.x < runningSpeed)
+        if (GameManager.sharedInstance.currentGameState == GameState.inGame)
         {
-            rigidBody.velocity = new Vector2(runningSpeed, //x
-                rigidBody.velocity.y //y
-                );
+            if (rigidBody.velocity.x < runningSpeed)
+            {
+                rigidBody.velocity = new Vector2(runningSpeed, //x
+                    rigidBody.velocity.y //y
+                    );
+            }
+        }else //Si no estamos dentro de la partida
+        {
+            rigidBody.velocity = new Vector2(0, rigidBody.velocity.y);
         }
     }
 
     //Salto del personaje
     void Jump(){
-        if (IsTouchingTheGround())
+        if (GameManager.sharedInstance.currentGameState == GameState.inGame)
         {
-            rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            if (IsTouchingTheGround())
+            {
+                rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            }
         }
     }
 
@@ -64,12 +73,10 @@ public class PlayerController : MonoBehaviour
     {
         if (Physics2D.Raycast(this.transform.position, Vector2.down, 1.5f, groundMask))
         {
-            //TODO: programar lógica de contacto con el suelo
             return true;
         }
         else
         {
-            //TODO: programar lógica de no contacto
             return false;
         }
     }
