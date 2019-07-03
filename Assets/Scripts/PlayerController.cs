@@ -81,4 +81,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Die()
+    {
+        this.animator.SetBool(STATE_ALIVE, false);
+        GameManager.sharedInstance.GameOver();
+    }
+
 }
