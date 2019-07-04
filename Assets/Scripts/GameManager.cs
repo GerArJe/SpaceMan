@@ -64,6 +64,8 @@ public class GameManager : MonoBehaviour
         else if (newGameState == GameState.inGame)
         {
             //TODO: hay que preparar la escena para jugar
+            LevelManager.sharedInstance.RemoveAllLevelBlocks();
+            LevelManager.sharedInstance.GenerateInitialBlocks();
             Controller.StartGame();
         }
         else if (newGameState == GameState.gameOver)
