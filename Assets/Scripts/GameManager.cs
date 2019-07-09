@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
 
     PlayerController Controller;
 
+    public int collectedObject = 0;
+
     void Awake()
     {
         if (sharedInstance == null)
@@ -29,6 +31,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         Controller = GameObject.Find("Player").GetComponent<PlayerController>();
+        SetGameState(currentGameState);
     }
 
     // Update is called once per frame
@@ -61,6 +64,8 @@ public class GameManager : MonoBehaviour
         {
             //TODO: colocar la lógica del menú
             MenuManager.sharedInstance.ShowMaiMenu();
+            MenuManager.sharedInstance.HideGameCanvas();
+            MenuManager.sharedInstance.HideGameOverMenu();
         }
         else if (newGameState == GameState.inGame)
         {
@@ -68,14 +73,23 @@ public class GameManager : MonoBehaviour
             LevelManager.sharedInstance.RemoveAllLevelBlocks();
             LevelManager.sharedInstance.GenerateInitialBlocks();
             Controller.StartGame();
+            MenuManager.sharedInstance.ShowGameCanvas();
             MenuManager.sharedInstance.HideMainMenu();
+            MenuManager.sharedInstance.HideGameOverMenu();
         }
         else if (newGameState == GameState.gameOver)
         {
             //TODO: preparar el juego para el Game Over
-            MenuManager.sharedInstance.ShowMaiMenu();
+            MenuManager.sharedInstance.ShowGameOverMenu();
+            MenuManager.sharedInstance.HideGameCanvas();
+            MenuManager.sharedInstance.HideMainMenu();
         }
 
         this.currentGameState = newGameState;
+    }
+
+    public void CollectObject(Collectable collectable)
+    {
+        collectedObject += collectable.value;
     }
 }

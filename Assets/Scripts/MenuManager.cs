@@ -6,6 +6,8 @@ public class MenuManager : MonoBehaviour
 {
     public static MenuManager sharedInstance;
     public Canvas menuCanvas;
+    public Canvas gameCanvas;
+    public Canvas gameOverCanvas;
 
     private void Awake()
     {
@@ -23,6 +25,26 @@ public class MenuManager : MonoBehaviour
     public void HideMainMenu()
     {
         menuCanvas.enabled = false;
+    }
+
+    public void ShowGameCanvas()
+    {
+        gameCanvas.enabled = true;
+    }
+
+    public void HideGameCanvas()
+    {
+        gameCanvas.enabled = false;
+    }
+
+    public void ShowGameOverMenu()
+    {
+        gameOverCanvas.enabled = true;
+    }
+
+    public void HideGameOverMenu()
+    {
+        gameOverCanvas.enabled = false;
     }
 
     public void ExitGame()
