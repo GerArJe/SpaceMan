@@ -3332,11 +3332,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1634004066, guid: d59042c61cee3b847a0e62db1e48cf72, type: 3}
       propertyPath: m_Offset.y
-      value: -1.264744
+      value: -1.2270517
       objectReference: {fileID: 0}
     - target: {fileID: 1634004066, guid: d59042c61cee3b847a0e62db1e48cf72, type: 3}
       propertyPath: m_Size.y
-      value: 0.121668816
+      value: 0.1266942
+      objectReference: {fileID: 0}
+    - target: {fileID: 1634004065, guid: d59042c61cee3b847a0e62db1e48cf72, type: 3}
+      propertyPath: jumpRaycastDistance
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d59042c61cee3b847a0e62db1e48cf72, type: 3}
