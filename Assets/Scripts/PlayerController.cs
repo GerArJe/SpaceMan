@@ -106,6 +106,7 @@ public class PlayerController : MonoBehaviour
         {
             if (IsTouchingTheGround())
             {
+                GetComponent<AudioSource>().Play();
                 rigidBody.AddForce(Vector2.up * jumpForceFactor, ForceMode2D.Impulse);
             }
         }
@@ -143,6 +144,11 @@ public class PlayerController : MonoBehaviour
         if (this.healthPoints >= MAX_HEALTH)
         {
             this.healthPoints = MAX_HEALTH;
+        }
+
+        if (this.healthPoints <= 0)
+        {
+            Die();
         }
     }
 

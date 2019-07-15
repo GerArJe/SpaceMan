@@ -61,6 +61,7 @@ public class Collectable : MonoBehaviour
                 break;
             case CollectableType.money:
                 GameManager.sharedInstance.CollectObject(this);
+                GetComponent<AudioSource>().Play();
                 break;
             default:
                 break;

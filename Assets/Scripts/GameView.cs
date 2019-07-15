@@ -29,5 +29,13 @@ public class GameView : MonoBehaviour
             scoreText.text = "Score: " + score.ToString("f1");
             maxScoreText.text = "MaxScore: " + maxScore.ToString("f1");
         }
+        if (GameManager.sharedInstance.currentGameState == GameState.gameOver)
+        {
+            int coins = GameManager.sharedInstance.collectedObject;
+            float score = controller.GetTravelledDistance();
+
+            coinsText.text = coins.ToString();
+            scoreText.text = "Score: " + score.ToString("f1");
+        }
     }
 }

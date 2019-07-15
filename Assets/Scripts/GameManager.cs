@@ -45,11 +45,13 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        GameObject.Find("StartGame Sound").GetComponent<AudioSource>().Play();
         SetGameState(GameState.inGame);
     } 
 
     public void GameOver()
     {
+        GameObject.Find("GameOver Sound").GetComponent<AudioSource>().Play();
         SetGameState(GameState.gameOver);
     }
 
